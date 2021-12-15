@@ -1,3 +1,5 @@
+const { default: axios } = require('axios');
+
 class Dog{
 
     constructor(name = 'Rexi', age = 1, hungry = 4, sex = "male"){
@@ -28,22 +30,36 @@ class Dog{
         }
         else console.log("the pet is not hungry");
     }
+    async speak(url){
+        // console.log("taking dogs");
+        console.log("THE DOG SAY: ")
+        console.log((await axios.get(url)).data.quote)
+            
+            // .then(result => {
+                // console.log(result.data.quote);})
+            // .catch(error => {console.log(error)});
+    }
 
 }
-
-const dog1 = new Dog();
-console.log(dog1);
-dog1.setName("RAMI");
-console.log(dog1);
-dog1.growUp();
-console.log(dog1)
-dog1.howMuchHungry(9);
-console.log(dog1);
-dog1.feed();
-dog1.feed();
-dog1.howMuchHungry(6);
-dog1.feed();
-dog1.feed();
-dog1.howMuchHungry(-1);
+(async () => {
+    const dog1 = new Dog();
+    console.log(dog1);
+    dog1.setName("RAMI");
+    console.log(dog1);
+    dog1.growUp();
+    console.log(dog1)
+    dog1.howMuchHungry(9);
+    console.log(dog1);
+    dog1.feed();
+    dog1.feed();
+    dog1.howMuchHungry(6);
+    dog1.feed();
+    dog1.feed();
+    await dog1.speak('https://api.kanye.rest/');
+    console.log("THE END ");
+    console.log();
+    dog1.howMuchHungry(-1);
+})();
+// 
 
 
